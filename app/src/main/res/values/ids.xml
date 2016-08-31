@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="final_price" type="id" />
+    <item name="delete_button" type="id" />
+    <item name="item_name_text" type="id" />
+    <item name="item_price_text" type="id" />
+    <item name="item_count_text" type="id" />
+    <item name="item_total_price_text" type="id" />
+</resources>
