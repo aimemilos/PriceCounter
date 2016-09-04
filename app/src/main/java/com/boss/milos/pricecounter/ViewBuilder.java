@@ -3,6 +3,7 @@ package com.boss.milos.pricecounter;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,8 @@ public class ViewBuilder {
     public View createFinalPriceView() {
         TextView finalPriceView = new TextView(scrollingActivity);
         finalPriceView.setText("Final price: 0.0");
+        finalPriceView.setGravity(Gravity.CENTER);
+        finalPriceView.setTextSize(20);
         finalPriceView.setId(R.id.final_price);
 
         return finalPriceView;
@@ -125,7 +128,10 @@ public class ViewBuilder {
      */
     public View createItemNameEditText() {
         final EditText itemName = new EditText(scrollingActivity);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams();
+        layoutParams.span = 3;
         itemName.setHint("Item Name");
+        itemName.setLayoutParams(layoutParams);
         itemName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -156,6 +162,7 @@ public class ViewBuilder {
     public View createPriceLabelTextView() {
         TextView priceLabel = new TextView(scrollingActivity);
         priceLabel.setText("Price: ");
+        priceLabel.setGravity(Gravity.CENTER);
 
         return priceLabel;
     }
@@ -167,6 +174,7 @@ public class ViewBuilder {
     public View createPriceEditText() {
         final EditText price = new EditText(scrollingActivity);
         price.setHint("0.0");
+        price.setGravity(Gravity.CENTER);
         price.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -190,7 +198,7 @@ public class ViewBuilder {
                     element.setPrice(0.0);
                 }
 
-                updatePrizeForDrinksView(price, element);
+                updatePriceForDrinksView(price, element);
             }
         });
 
@@ -219,6 +227,7 @@ public class ViewBuilder {
     public View createCountLabelTextView() {
         TextView countLabel = new TextView(scrollingActivity);
         countLabel.setText("Count: ");
+        countLabel.setGravity(Gravity.CENTER);
 
         return countLabel;
     }
@@ -241,7 +250,7 @@ public class ViewBuilder {
                 }
                 element.increaseCount();
                 updateCountView(view, element.getCount());
-                updatePrizeForDrinksView(view, element);
+                updatePriceForDrinksView(view, element);
             }
         });
 
@@ -255,6 +264,8 @@ public class ViewBuilder {
     public View createCountTextView() {
         TextView count = new TextView(scrollingActivity);
         count.setText("0");
+        count.setGravity(Gravity.CENTER);
+        count.setTextSize(16);
         count.setId(R.id.item_count_text);
 
         return count;
@@ -278,7 +289,7 @@ public class ViewBuilder {
                 }
                 element.decreaseCount();
                 updateCountView(view, element.getCount());
-                updatePrizeForDrinksView(view,element);
+                updatePriceForDrinksView(view,element);
             }
         });
 
@@ -292,6 +303,7 @@ public class ViewBuilder {
     public View createTotalLabelTextView() {
         TextView totalLabel = new TextView(scrollingActivity);
         totalLabel.setText("Total:");
+        totalLabel.setGravity(Gravity.CENTER);
         return totalLabel;
     }
 
@@ -302,6 +314,8 @@ public class ViewBuilder {
     public View createTotalPriceTextView() {
         TextView totalPrice = new TextView(scrollingActivity);
         totalPrice.setText("0.0");
+        totalPrice.setGravity(Gravity.CENTER);
+        totalPrice.setTextSize(16);
         totalPrice.setId(R.id.item_total_price_text);
         return totalPrice;
     }
@@ -340,7 +354,7 @@ public class ViewBuilder {
      * @param view the View that caused the change of price: either a TextView with the price or a +/- button
      * @param element the element whose price changed
      */
-    public void updatePrizeForDrinksView(View view, Element element) {
+    public void updatePriceForDrinksView(View view, Element element) {
         Double total = element.getPrice() * element.getCount();
 
         TableRow tableRow = (TableRow)view.getParent();
